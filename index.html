@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grade 12 Advanced Math - Calculus & DE Final Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .answer-box, #results-panel { display: none; }
+    .answers-visible .answer-box { display: block; }
+    .correct { background-color: #dcfce7 !important; border-color: #16a34a !important; }
+    .incorrect { background-color: #fee2e2 !important; border-color: #dc2626 !important; }
+    @media print {
+      .no-print { display: none !important; }
+      .shadow-lg, .shadow-md { box-shadow: none !important; }
+      body { background: white !important; color: black !important; }
+      .bg-gray-50, .bg-white, .bg-blue-50, .bg-green-50, #results-panel { background-color: white !important; }
+      textarea, input { border: 1px solid #ccc !important; background: transparent !important; }
+    }
+    textarea, input { resize: vertical; }
+    .fade-in { animation: fadeIn 0.5s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .math-input { font-family: 'Courier New', monospace; letter-spacing: 0.5px; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 p-4 md:p-8 min-h-screen">
+
+  <!-- Controls -->
+  <div class="max-w-5xl mx-auto mb-6 flex flex-wrap gap-3 justify-center no-print">
+    <button onclick="toggleAnswers()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-medium transition shadow cursor-pointer">
+      👁️ Show / Hide Model Answers
+    </button>
+    <button onclick="window.print()" class="bg-gray-800 hover:bg-gray-900 text-white px-5 py-2 rounded-lg font-medium transition shadow cursor-pointer">
+      🖨️ Print / Save as PDF
+    </button>
+  </div>
+
+  <!-- Header -->
+  <header class="max-w-5xl mx-auto bg-white p-6 rounded-xl shadow-md mb-8 border-l-4 border-indigo-600">
+    <div class="text-center">
+      <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Grade 12 Advanced Mathematics</h1>
+      <h2 class="text-lg text-indigo-600 font-semibold">Calculus & Differential Equations - Final Exam</h2>
+    </div>
+    <div class="mt-4 flex flex-wrap justify-center gap-4 text-sm text-gray-600">
+      <span>📅 Date: <input type="text" class="border-b border-gray-400 bg-transparent w-28"></span>
+      <span>👤 Name: <input type="text" id="studentName" class="border-b border-gray-400 bg-transparent w-32" placeholder="Student Name"></span>
+      <span>⏱️ Time: 120 min</span>
+      <span>📊 Total: 100 Marks</span>
+    </div>
+    <p class="mt-2 text-xs text-center text-gray-500">💡 Tip: Use `^` for powers, `pi` for π, `ln` for natural log. Ignore spacing.</p>
+  </header>
+
+  <main class="max-w-5xl mx-auto space-y-8">
+
+    <!-- PART 1: Multiple Choice (40 Marks) -->
+    <section class="bg-white p-6 rounded-xl shadow-lg">
+      <h2 class="text-2xl font-bold mb-4 text-indigo-700">🔹 Part 1: Multiple Choice Questions (40 Marks)</h2>
+      <p class="mb-4 text-gray-600 text-sm">Select the best answer for each question. (4 marks each)</p>
+      
+      <div class="space-y-5">
+        <!-- Q1 -->
+        <div class="border-l-4 border-indigo-500 pl-4 py-2">
+          <p class="font-semibold text-sm mb-2">1. What does the expression <code>∫ f(x) dx</code> represent?</p>
+          <div class="grid grid-cols-2 gap-2 text-sm">
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q1" value="a" class="mr-2"> a) A specific numerical value</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q1" value="b" class="mr-2"> b) The derivative of f(x)</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q1" value="c" class="mr-2"> c) A family of antiderivatives (indefinite integral)</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q1" value="d" class="mr-2"> d) The slope of the tangent line</label>
+          </div>
+          <div class="answer-box text-green-700 mt-2 text-sm">✅ Answer: c) A family of antiderivatives</div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="border-l-4 border-indigo-500 pl-4 py-2">
+          <p class="font-semibold text-sm mb-2">2. According to the Fundamental Theorem of Calculus Part I, if <code>F(x) = ∫[a to x] f(t) dt</code>, then <code>F'(x) = ?</code></p>
+          <div class="grid grid-cols-2 gap-2 text-sm">
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q2" value="a" class="mr-2"> a) f(x)</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q2" value="b" class="mr-2"> b) F(x)</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q2" value="c" class="mr-2"> c) f(a)</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q2" value="d" class="mr-2"> d) 0</label>
+          </div>
+          <div class="answer-box text-green-700 mt-2 text-sm">✅ Answer: a) f(x)</div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="border-l-4 border-indigo-500 pl-4 py-2">
+          <p class="font-semibold text-sm mb-2">3. Which integration technique is most appropriate for <code>∫ x e^x dx</code>?</p>
+          <div class="grid grid-cols-2 gap-2 text-sm">
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q3" value="a" class="mr-2"> a) Simple substitution</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q3" value="b" class="mr-2"> b) Integration by parts</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q3" value="c" class="mr-2"> c) Partial fractions</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q3" value="d" class="mr-2"> d) Trigonometric substitution</label>
+          </div>
+          <div class="answer-box text-green-700 mt-2 text-sm">✅ Answer: b) Integration by parts</div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="border-l-4 border-indigo-500 pl-4 py-2">
+          <p class="font-semibold text-sm mb-2">4. To evaluate <code>∫ sin^3(x) cos^2(x) dx</code>, the standard strategy is to:</p>
+          <div class="grid grid-cols-2 gap-2 text-sm">
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q4" value="a" class="mr-2"> a) Factor out cos(x) and convert to sin</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q4" value="b" class="mr-2"> b) Factor out sin(x) and convert sin² to 1-cos²</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q4" value="c" class="mr-2"> c) Use integration by parts twice</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q4" value="d" class="mr-2"> d) Apply partial fractions</label>
+          </div>
+          <div class="answer-box text-green-700 mt-2 text-sm">✅ Answer: b) Factor out sin(x) and convert sin² to 1-cos²</div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="border-l-4 border-indigo-500 pl-4 py-2">
+          <p class="font-semibold text-sm mb-2">5. The correct partial fraction decomposition setup for <code>1 / [x(x-1)^2]</code> is:</p>
+          <div class="grid grid-cols-2 gap-2 text-sm">
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q5" value="a" class="mr-2"> a) A/x + B/(x-1)</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q5" value="b" class="mr-2"> b) A/x + B/(x-1) + C/(x-1)^2</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q5" value="c" class="mr-2"> c) (Ax+B)/[x(x-1)^2]</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q5" value="d" class="mr-2"> d) A/x + B/(x-1)^2</label>
+          </div>
+          <div class="answer-box text-green-700 mt-2 text-sm">✅ Answer: b) A/x + B/(x-1) + C/(x-1)^2</div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="border-l-4 border-indigo-500 pl-4 py-2">
+          <p class="font-semibold text-sm mb-2">6. The Trapezoidal Rule approximates the definite integral by summing the areas of:</p>
+          <div class="grid grid-cols-2 gap-2 text-sm">
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q6" value="a" class="mr-2"> a) Rectangles</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q6" value="b" class="mr-2"> b) Trapezoids</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q6" value="c" class="mr-2"> c) Parabolas</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q6" value="d" class="mr-2"> d) Triangles</label>
+          </div>
+          <div class="answer-box text-green-700 mt-2 text-sm">✅ Answer: b) Trapezoids</div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="border-l-4 border-indigo-500 pl-4 py-2">
+          <p class="font-semibold text-sm mb-2">7. Which differential equation represents exponential growth?</p>
+          <div class="grid grid-cols-2 gap-2 text-sm">
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q7" value="a" class="mr-2"> a) dy/dx = k</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q7" value="b" class="mr-2"> b) dy/dx = ky</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q7" value="c" class="mr-2"> c) dy/dx = k/y</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q7" value="d" class="mr-2"> d) d²y/dx² = ky</label>
+          </div>
+          <div class="answer-box text-green-700 mt-2 text-sm">✅ Answer: b) dy/dx = ky</div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="border-l-4 border-indigo-500 pl-4 py-2">
+          <p class="font-semibold text-sm mb-2">8. The formula for the volume of a solid of revolution using the Washer Method (rotation about x-axis) is:</p>
+          <div class="grid grid-cols-2 gap-2 text-sm">
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q8" value="a" class="mr-2"> a) π∫[R(x) + r(x)]² dx</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q8" value="b" class="mr-2"> b) π∫[R(x)² - r(x)²] dx</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q8" value="c" class="mr-2"> c) 2π∫x[f(x)] dx</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q8" value="d" class="mr-2"> d) ∫[R(x) - r(x)] dx</label>
+          </div>
+          <div class="answer-box text-green-700 mt-2 text-sm">✅ Answer: b) π∫[R(x)² - r(x)²] dx</div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="border-l-4 border-indigo-500 pl-4 py-2">
+          <p class="font-semibold text-sm mb-2">9. If <code>∫[1 to 4] f(x) dx = 10</code> and <code>∫[1 to 2] f(x) dx = 3</code>, then <code>∫[2 to 4] f(x) dx = ?</code></p>
+          <div class="grid grid-cols-2 gap-2 text-sm">
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q9" value="a" class="mr-2"> a) 7</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q9" value="b" class="mr-2"> b) 13</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q9" value="c" class="mr-2"> c) 10</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q9" value="d" class="mr-2"> d) 3</label>
+          </div>
+          <div class="answer-box text-green-700 mt-2 text-sm">✅ Answer: a) 7</div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="border-l-4 border-indigo-500 pl-4 py-2">
+          <p class="font-semibold text-sm mb-2">10. Simpson's Rule generally provides a more accurate approximation than the Trapezoidal Rule because it uses:</p>
+          <div class="grid grid-cols-2 gap-2 text-sm">
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q10" value="a" class="mr-2"> a) Linear approximations</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q10" value="b" class="mr-2"> b) Quadratic (parabolic) approximations</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q10" value="c" class="mr-2"> c) More intervals only</label>
+            <label class="flex items-center cursor-pointer"><input type="radio" name="q10" value="d" class="mr-2"> d) Random sampling</label>
+          </div>
+          <div class="answer-box text-green-700 mt-2 text-sm">✅ Answer: b) Quadratic (parabolic) approximations</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PART 2: Computational Problems (40 Marks) -->
+    <section class="bg-white p-6 rounded-xl shadow-lg">
+      <h2 class="text-2xl font-bold mb-4 text-indigo-700">🔹 Part 2: Computational Problems (40 Marks)</h2>
+      <p class="mb-4 text-gray-600 text-sm">Solve each problem. Enter your final simplified answer. Use `pi`, `ln`, `^` as needed. (8 marks each)</p>
+      
+      <div class="space-y-5">
+        <div class="border-l-4 border-purple-500 pl-4 py-2">
+          <p class="font-semibold text-sm mb-2">11. Evaluate: <code>∫ x ln(x) dx</code> (Use Integration by Parts)</p>
+          <input type="text" id="prob11" class="w-full mt-2 p-2 border rounded text-sm math-input" placeholder="e.g., (x^2/2)ln(x) - x^2/4 + C">
+          <div class="answer-box text-green-700 mt-2 text-sm">✅ Answer: (x^2/2)ln(x) - x^2/4 + C  (Accept equivalent forms)</div>
+        </div>
+
+        <div class="border-l-4 border-purple-500 pl-4 py-2">
+          <p class="font-semibold text-sm mb-2">12. Evaluate: <code>∫ sin^2(x) cos^3(x) dx</code></p>
+          <input type="text" id="prob12" class="w-full mt-2 p-2 border rounded text-sm math-input" placeholder="e.g., sin^3(x)/3 - sin^5(x)/5 + C">
+          <div class="answer-box text-green-700 mt-2 text-sm">✅ Answer: sin^3(x)/3 - sin^5(x)/5 + C</div>
+        </div>
+
+        <div class="border-l-4 border-purple-500 pl-4 py-2">
+          <p class="font-semibold text-sm mb-2">13. Evaluate: <code>∫ (2x+3)/(x^2+3x+2) dx</code> (Use Partial Fractions)</p>
+          <input type="text" id="prob13" class="w-full mt-2 p-2 border rounded text-sm math-input" placeholder="e.g., ln|x+1| + ln|x+2| + C">
+          <div class="answer-box text-green-700 mt-2 text-sm">✅ Answer: ln|x+1| + ln|x+2| + C  (or ln|(x+1)(x+2)| + C)</div>
+        </div>
+
+        <div class="border-l-4 border-purple-500 pl-4 py-2">
+          <p class="font-semibold text-sm mb-2">14. Find the area of the region bounded by <code>y = x^2</code> and <code>y = 4</code>.</p>
+          <input type="text" id="prob14" class="w-full mt-2 p-2 border rounded text-sm math-input" placeholder="Enter numerical value">
+          <div class="answer-box text-green-700 mt-2 text-sm">✅ Answer: 32/3  (or 10.67)</div>
+        </div>
+
+        <div class="border-l-4 border-purple-500 pl-4 py-2">
+          <p class="font-semibold text-sm mb-2">15. Solve the differential equation: <code>dy/dx = 2xy</code> with initial condition <code>y(0) = 3</code>.</p>
+          <input type="text" id="prob15" class="w-full mt-2 p-2 border rounded text-sm math-input" placeholder="e.g., y = 3e^(x^2)">
+          <div class="answer-box text-green-700 mt-2 text-sm">✅ Answer: y = 3e^(x^2)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PART 3: Applications & Conceptual (20 Marks) -->
+    <section class="bg-white p-6 rounded-xl shadow-lg">
+      <h2 class="text-2xl font-bold mb-4 text-indigo-700">🔹 Part 3: Applications & Conceptual (20 Marks)</h2>
+      
+      <div class="space-y-5">
+        <div class="border-l-4 border-green-500 pl-4 py-2">
+          <p class="font-semibold text-sm mb-2">16. A bacteria culture grows at a rate proportional to its size. If the initial population is 500 and it doubles every 3 hours, find the population after 5 hours. (Show setup & final answer) (10 Marks)</p>
+          <textarea id="q16" class="w-full mt-2 p-2 border rounded h-20 text-sm math-input" placeholder="Your solution..."></textarea>
+          <div class="answer-box text-green-700 mt-2 text-sm">✅ Setup: P(t) = 500e^(kt), k = ln(2)/3. P(5) = 500 * 2^(5/3) ≈ 1587.4</div>
+        </div>
+
+        <div class="border-l-4 border-green-500 pl-4 py-2">
+          <p class="font-semibold text-sm mb-2">17. Set up (do not evaluate) the definite integral for the volume of the solid obtained by rotating the region bounded by <code>y = √x</code>, <code>y = 0</code>, and <code>x = 4</code> about the x-axis. Explain your choice of method. (10 Marks)</p>
+          <textarea id="q17" class="w-full mt-2 p-2 border rounded h-20 text-sm math-input" placeholder="Integral setup & reasoning..."></textarea>
+          <div class="answer-box text-green-700 mt-2 text-sm">✅ Setup: V = π ∫[0 to 4] (√x)^2 dx = π ∫[0 to 4] x dx. Method: Disk method is simplest since rotation is about x-axis and function is given as y=f(x).</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Submit & Email Buttons -->
+    <div class="text-center no-print pb-8">
+      <button onclick="gradeExam()" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-lg px-10 py-4 rounded-xl font-bold shadow-xl transition transform hover:scale-105 cursor-pointer">
+        📝 Submit & Auto-Grade Exam
+      </button>
+      <p class="text-xs text-gray-500 mt-3">Results appear instantly with detailed feedback.</p>
+      
+      <button id="sendEmailBtn" onclick="sendResultsToEmail()" class="mt-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-lg px-10 py-4 rounded-xl font-bold shadow-xl transition transform hover:scale-105 cursor-pointer hidden">
+        📧 Send Results to Teacher
+      </button>
+      <p id="emailStatus" class="text-sm mt-2 text-center font-medium"></p>
+    </div>
+
+  </main>
+
+  <!-- Results Panel -->
+  <div id="results-panel" class="max-w-5xl mx-auto mt-8 bg-white p-8 rounded-2xl shadow-2xl border-t-4 border-emerald-500 fade-in no-print">
+    <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">📊 Exam Results</h2>
+    
+    <div class="grid md:grid-cols-3 gap-4 mb-6">
+      <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-xl">
+        <p class="text-sm text-gray-600">Student Name</p>
+        <p id="res-name" class="font-bold text-xl text-indigo-700">-</p>
+      </div>
+      <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-4 rounded-xl">
+        <p class="text-sm text-gray-600">Date</p>
+        <p id="res-date" class="font-bold text-xl text-purple-700">-</p>
+      </div>
+      <div class="bg-gradient-to-br from-emerald-50 to-teal-50 p-4 rounded-xl">
+        <p class="text-sm text-gray-600">Total Score</p>
+        <p id="res-total" class="font-bold text-3xl text-emerald-600">0 / 100</p>
+      </div>
+    </div>
+
+    <div class="bg-gray-50 p-6 rounded-xl mb-6">
+      <h3 class="font-bold text-lg mb-4">Detailed Breakdown:</h3>
+      <div id="breakdown" class="space-y-2"></div>
+    </div>
+
+    <div class="bg-blue-50 p-4 rounded-xl text-sm text-blue-800 mb-6">
+      <strong>📌 Note:</strong> Multiple choice graded exactly. Numerical answers accept standard math notation & ±2% tolerance. Conceptual answers checked for key calculus terms. Review highlighted fields for feedback.
+    </div>
+
+    <div class="flex gap-3 justify-center">
+      <button onclick="window.print()" class="bg-gray-700 hover:bg-gray-800 text-white px-6 py-3 rounded-lg font-semibold cursor-pointer transition">
+        🖨️ Print Results
+      </button>
+    </div>
+  </div>
+
+  <footer class="max-w-5xl mx-auto mt-10 mb-8 text-center text-gray-500 text-sm no-print">
+    © Grade 12 Advanced Math Exam | Auto-Grading System | Based on Official Framework & Chapter 3
+  </footer>
+
+  <script>
+    // ============================================================
+    // ⚠️ STEP 1: REPLACE WITH YOUR EMAILJS CREDENTIALS
+    // ============================================================
+    const PUBLIC_KEY = "Rb3Lq8tXaFmc5YHUH";
+    const SERVICE_ID = "service_w15m64i";
+    const TEMPLATE_ID = "template_5b0u2tq";
+    const TARGET_EMAIL = "mohammedhesham872@gmail.com";
+    // ============================================================
+
+    (function(){
+        emailjs.init(PUBLIC_KEY);
+    })();
+
+    function toggleAnswers() {
+      document.body.classList.toggle('answers-visible');
+    }
+
+    // Helper: Normalize math input for grading
+    function normalizeMath(str) {
+      if (!str) return "";
+      let s = str.toLowerCase().replace(/\s+/g, '').replace(/pi/g, 'π').replace(/ln\|/g, 'ln(').replace(/\|/g, ')');
+      return s;
+    }
+
+    // Helper: Check numerical/math answer with tolerance
+    function checkMathAnswer(input, correctAnswers) {
+      if (!input) return false;
+      const norm = normalizeMath(input);
+      for (let ans of correctAnswers) {
+        if (norm === normalizeMath(ans)) return true;
+      }
+      // Fallback: try to extract numbers and compare with tolerance
+      const nums = input.match(/-?\d+\.?\d*/g);
+      if (nums) {
+        for (let n of nums) {
+          let val = parseFloat(n);
+          if (!isNaN(val)) {
+            for (let ans of correctAnswers) {
+              let aVal = parseFloat(ans);
+              if (!isNaN(aVal) && Math.abs(val - aVal) / Math.abs(aVal || 1) < 0.02) return true;
+            }
+          }
+        }
+      }
+      return false;
+    }
+
+    function gradeExam() {
+      const name = document.getElementById('studentName').value || 'Student';
+      const date = document.querySelector('input[type="text"]').value || new Date().toLocaleDateString();
+      let total = 0;
+      const breakdown = [];
+
+      // Part 1: MCQ (10 questions × 4 marks = 40 marks)
+      const mcqAnswers = ['c','a','b','b','b','b','b','b','a','b'];
+      let mcqScore = 0;
+      for(let i=1; i<=10; i++){
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        const match = selected && selected.value === mcqAnswers[i-1];
+        if(match) mcqScore += 4;
+        const parent = document.querySelector(`input[name="q${i}"]`).closest('div');
+        parent.classList.add(match ? 'correct' : 'incorrect');
+      }
+      total += mcqScore;
+      breakdown.push(`<div class="flex justify-between p-2 bg-white rounded"><span>Part 1: Multiple Choice</span><span class="font-bold text-indigo-700">${mcqScore}/40</span></div>`);
+
+      // Part 2: Calculations (5 problems × 8 marks = 40 marks)
+      const calcAnswers = [
+        {q: 'prob11', correct: ['(x^2/2)ln(x)-x^2/4+c', '0.5x^2ln(x)-0.25x^2+c', 'x^2ln(x)/2-x^2/4+c']},
+        {q: 'prob12', correct: ['sin^3(x)/3-sin^5(x)/5+c', '(1/3)sin^3(x)-(1/5)sin^5(x)+c']},
+        {q: 'prob13', correct: ['ln|x+1|+ln|x+2|+c', 'ln|(x+1)(x+2)|+c', 'ln(x+1)+ln(x+2)+c']},
+        {q: 'prob14', correct: ['32/3', '10.67', '10.667']},
+        {q: 'prob15', correct: ['y=3e^(x^2)', 'y=3e^{x^2}', '3e^(x^2)']}
+      ];
+      
+      let calcScore = 0;
+      calcAnswers.forEach((item, idx) => {
+        const val = document.getElementById(item.q).value;
+        const match = checkMathAnswer(val, item.correct);
+        if(match) calcScore += 8;
+        document.getElementById(item.q).classList.add(match ? 'correct' : 'incorrect');
+      });
+      total += calcScore;
+      breakdown.push(`<div class="flex justify-between p-2 bg-white rounded"><span>Part 2: Calculations</span><span class="font-bold text-purple-700">${calcScore}/40</span></div>`);
+
+      // Part 3: Conceptual (2 questions × 10 marks = 20 marks)
+      const conceptKeywords = [
+        ['500', 'double', '3', 'k', 'ln', 'growth', 'p(t)', '500e', '1587'],
+        ['volume', 'pi', 'integral', 'x', '0', '4', 'disk', 'method', 'v=', 'setup']
+      ];
+      
+      let conceptScore = 0;
+      conceptKeywords.forEach((keywords, idx) => {
+        const txt = document.getElementById(`q${idx+16}`).value.toLowerCase();
+        const matchCount = keywords.filter(k => txt.includes(k)).length;
+        const qScore = Math.min(10, matchCount >= 3 ? 10 : matchCount >= 1 ? 5 : 0);
+        conceptScore += qScore;
+        document.getElementById(`q${idx+16}`).classList.add(qScore >= 5 ? 'correct' : 'incorrect');
+      });
+      total += conceptScore;
+      breakdown.push(`<div class="flex justify-between p-2 bg-white rounded"><span>Part 3: Applications</span><span class="font-bold text-green-700">${conceptScore}/20</span></div>`);
+
+      // Display Results
+      document.getElementById('res-name').textContent = name;
+      document.getElementById('res-date').textContent = date;
+      document.getElementById('res-total').textContent = `${total} / 100`;
+      document.getElementById('breakdown').innerHTML = breakdown.join('');
+      
+      const panel = document.getElementById('results-panel');
+      panel.style.display = 'block';
+      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      
+      document.getElementById('sendEmailBtn').classList.remove('hidden');
+    }
+
+    function sendResultsToEmail() {
+      const btn = document.getElementById('sendEmailBtn');
+      const status = document.getElementById('emailStatus');
+      btn.disabled = true;
+      btn.textContent = '⏳ Sending...';
+
+      const name = document.getElementById('studentName').value || 'N/A';
+      const date = document.querySelector('input[type="text"]').value || new Date().toLocaleDateString();
+      const score = document.getElementById('res-total').textContent;
+
+      let answersHTML = `<table style="border:1px solid #e5e7eb; border-collapse:collapse; width:100%; font-family:Arial; font-size:12px;">
+        <tr style="background:#4F46E5; color:white;"><th style="border:1px solid #e5e7eb; padding:8px;">Section</th><th style="border:1px solid #e5e7eb; padding:8px;">Question</th><th style="border:1px solid #e5e7eb; padding:8px;">Answer</th></tr>`;
+      
+      for(let i=1; i<=10; i++) {
+        const sel = document.querySelector(`input[name="q${i}"]:checked`);
+        answersHTML += `<tr><td style="border:1px solid #e5e7eb; padding:6px;">MCQ ${i}</td><td style="border:1px solid #e5e7eb; padding:6px;">-</td><td style="border:1px solid #e5e7eb; padding:6px;">${sel ? sel.value.toUpperCase() : '-'}</td></tr>`;
+      }
+      for(let i=11; i<=15; i++) {
+        answersHTML += `<tr><td style="border:1px solid #e5e7eb; padding:6px;">Calc ${i-10}</td><td style="border:1px solid #e5e7eb; padding:6px;">-</td><td style="border:1px solid #e5e7eb; padding:6px;">${document.getElementById(`prob${i}`).value || '-'}</td></tr>`;
+      }
+      for(let i=16; i<=17; i++) {
+        answersHTML += `<tr><td style="border:1px solid #e5e7eb; padding:6px;">App ${i-15}</td><td style="border:1px solid #e5e7eb; padding:6px;">-</td><td style="border:1px solid #e5e7eb; padding:6px;">${document.getElementById(`q${i}`).value || '-'}</td></tr>`;
+      }
+      answersHTML += '</table>';
+
+      const templateParams = {
+        to_email: TARGET_EMAIL,
+        student_name: name,
+        exam_date: date,
+        total_score: score,
+        answers_table: answersHTML
+      };
+
+      emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
+        .then(() => {
+          status.textContent = '✅ Sent successfully! Check your Gmail.';
+          status.style.color = '#059669';
+          btn.textContent = '✓ Sent';
+        })
+        .catch(err => {
+          status.textContent = '❌ Failed. Check console or setup.';
+          status.style.color = '#dc2626';
+          btn.disabled = false;
+          btn.textContent = '📧 Retry Send';
+          console.error('EmailJS Error:', err);
+        });
+    }
+  </script>
+</body>
+</html>
